@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playbook-P4-M05</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 20px;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .banner {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .banner .title {
+            font-size: 1.2em;
+            display: flex;
+            justify-content: space-between;
+        }
+        .banner .subtitle {
+            font-size: 1em;
+            margin-top: 5px;
+            border-top: 1px solid white;
+            padding-top: 5px;
+        }
+        .content {
+            display: none;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 15px;
+        }
+        .step-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+        .section-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            text-align: right;
+        }
+        .dialogue {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: right;
+            font-style: italic;
+        }
+        .dropdown {
+            margin-bottom: 20px;
+        }
+        .dropdown select {
+            font-size: 1em;
+            padding: 5px;
+            margin-left: 10px;
+        }
+        .time-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .note {
+            background-color: #ffeb3b;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .nav-buttons button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        .nav-buttons button:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+    </style>
+    <script>
+        function toggleContent(id) {
+            var content = document.getElementById(id);
+            if (content.style.display === "none") {
+                content.style.display = "block";
+            } else {
+                content.style.display = "none";
+            }
+        }
+
+        function updateActivities() {
+            var selectedTime = document.getElementById('time-select').value;
+            var activities = document.getElementsByClassName('activity');
+
+            document.getElementById('selected-time').innerText = "Tiempo efectivo de clase: " + selectedTime + " minutos";
+
+            for (var i = 0; i < activities.length; i++) {
+                activities[i].style.display = 'block';
+            }
+
+            if (selectedTime === '45') {
+                document.getElementById('activity-2').style.display = 'none';
+            } else if (selectedTime === '40') {
+                document.getElementById('activity-2').style.display = 'none';
+                document.getElementById('activity-4').style.display = 'none';
+            }
+        }
+
+        function navigateTo(id) {
+            var element = document.getElementById(id);
+            window.scrollTo({
+                top: element.offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</head>
+<body onload="updateActivities()">
+
+<div class="header">
+    <h1>Playbook-P4-M05</h1>
+</div>
+
+<div class="container">
+    <div class="dropdown">
+        <label for="time-select">Tiempo efectivo de Clase:</label>
+        <select id="time-select" onchange="updateActivities()">
+            <option value="50">50 minutos</option>
+            <option value="45">45 minutos</option>
+            <option value="40">40 minutos</option>
+        </select>
+    </div>
+
+    <h2 id="selected-time" class="time-title">Tiempo efectivo de clase: 50 minutos</h2>
+<!-- Actividad 0 (1 paso) -->
+<div id="activity-0" class="activity">
+    <div class="banner" onclick="toggleContent('revision-mision')">
+        <div class="title">
+            <span>📝 Actividad 0: Revisión de Misión (1 paso)</span>
+            <span>⏰ Tiempo: N/A minutos</span>
+        </div>
+        <div class="subtitle">Proyectar la diapositiva 1 con la lista de materiales. Verificar que todo esté listo para la clase.</div>
+    </div>
+    <div id="revision-mision" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1: Proyectar la diapositiva 1 con la lista de materiales. Verificar que todo esté listo para la clase.</div>
+            <div class="dialogue">N/A</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 1 (4 pasos) -->
+<div id="activity-1" class="activity">
+    <div class="banner" onclick="toggleContent('saludo-ritual')">
+        <div class="title">
+            <span>📝 Actividad 1: Saludo y Ritual Gnius Club (4 pasos)</span>
+            <span>⏰ Tiempo: 3 minutos</span>
+        </div>
+        <div class="subtitle">Dar la bienvenida y energizar a los estudiantes.</div>
+    </div>
+    <div id="saludo-ritual" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (0.5 minutos): Proyectar la diapositiva 2 "Saludo y Ritual Gnius Club"</div>
+            <div class="dialogue">"¡Hola, Genios! 🌟 ¿Están listos para una nueva misión? Hoy vamos a aprender algo muy emocionante sobre cómo crear nuestros propios proyectos interactivos. ¡Es hora de empezar con mucha energía!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (1 minuto): Proyectar la diapositiva 3 "Estado de Ánimo" y pedir a los estudiantes que expresen cómo se sienten usando gestos</div>
+            <div class="dialogue">"¿Cómo se sienten hoy? Si están emocionados, tápense los oídos. Si sienten que necesitan más energía, tápense la boca."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (0.5 minutos): Proyectar la diapositiva 4 "Ritual de Agradecimiento" y guiar el ritual</div>
+            <div class="dialogue">"Ahora, vamos a juntar nuestras manos y agradecer por todo lo que aprenderemos hoy. ¡Gracias por estar aquí, Genios!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 4 (1 minuto): Proyectar la diapositiva 5 "Objetivos de la Misión" y explicar los objetivos</div>
+            <div class="dialogue">"Hoy tenemos tres grandes objetivos: 1) Entender qué es una variable y cómo funciona, 2) Programar nuestro primer juego interactivo, y 3) Proponer cambios en el juego usando paper programming."</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 2 (4 pasos) -->
+<div id="activity-2" class="activity">
+    <div class="banner" onclick="toggleContent('innovacion-dia')">
+        <div class="title">
+            <span>📝 Actividad 2: Innovación del Día (4 pasos)</span>
+            <span>⏰ Tiempo: 3.5 minutos</span>
+        </div>
+        <div class="subtitle">Introducir el concepto de cronómetros con microcontroladores.</div>
+    </div>
+    <div id="innovacion-dia" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (0.5 minutos): Proyectar la diapositiva 6 "Innovación del Día".</div>
+            <div class="dialogue">"Hoy vamos a conocer cómo los microcontroladores son usados para crear cosas increíbles como cronómetros. ¿Alguna vez se han preguntado cómo los dispositivos miden el tiempo? ¡Vamos a descubrirlo!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (1 minuto): Proyectar la diapositiva 7 "Video: Cronómetros y Microcontroladores".</div>
+            <div class="dialogue">"Veamos un video que nos explica cómo los cronómetros utilizan microcontroladores para medir el tiempo con precisión."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (1 minuto): Explicar cómo lo que vieron puede aplicarse a sus proyectos interactivos.</div>
+            <div class="dialogue">"Como vieron en el video, los microcontroladores pueden medir el tiempo. En nuestros proyectos interactivos, podemos crear cronómetros o juegos simples que interactúen con los usuarios usando botones y pantallas LED."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 4 (1 minuto): Guiar a los estudiantes en una breve reflexión sobre el uso de cronómetros en sus proyectos.</div>
+            <div class="dialogue">"Ahora piensen: ¿Cómo creen que podrían usar un cronómetro o el control del tiempo en sus propios proyectos? ¿Qué otras ideas se les ocurren para aplicar el uso de microcontroladores?"</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 3 (15 pasos) -->
+<div id="activity-3" class="activity">
+    <div class="banner" onclick="toggleContent('brain-gym')">
+        <div class="title">
+            <span>🧠 Actividad 3: Brain Gym (15 pasos)</span>
+            <span>⏰ Tiempo: 15 minutos</span>
+        </div>
+        <div class="subtitle">Realizar ejercicios interactivos para la programación de un juego de reacción en MakeCode.</div>
+    </div>
+    <div id="brain-gym" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (0.5 minutos): Proyectar la diapositiva 9 "Introducción al Brain Gym".</div>
+            <div class="dialogue">"Antes de comenzar con la programación, vamos a activar nuestras mentes con un poco de Brain Gym. Además, presten mucha atención porque dentro de lo que voy a explicar, hay un Easter Egg. Al final de la clase, quien lo descubra, ¡ganará un Mon-e!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (1 minuto): Proyectar la diapositiva 10 "Acceso a MakeCode".</div>
+            <div class="dialogue">"Imagina que estamos a punto de entrar en un taller donde vamos a construir nuestro propio juego. El primer paso es abrir las puertas de este taller en makecode.microbit.org. Allí, hagan clic en 'Nuevo Proyecto', que es como tomar una hoja en blanco para empezar a crear. Llamen a su proyecto 'JuegoDeReacción' y presionen 'Crear' para abrir el taller y comenzar a trabajar."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (1 minuto): Proyectar la diapositiva 11 "Limpiar el Área de Trabajo".</div>
+            <div class="dialogue">"Es como limpiar tu mesa de trabajo antes de empezar a construir algo nuevo. Vamos a eliminar los bloques que ya están ahí para tener espacio limpio. Hagan clic derecho sobre los bloques 'al iniciar' o 'por siempre' y seleccionen 'Eliminar'. Ahora estamos listos para empezar desde cero."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 4 (1 minuto): Proyectar la diapositiva 12 "Crear Variables".</div>
+            <div class="dialogue">"Ahora, necesitamos algunas 'cajitas' donde guardaremos información importante para nuestro juego. Estas cajitas son las variables, las variables son espacios en la memoria donde podemos guardar información que cambia mientras el programa está en ejecución. Primero, crearemos una caja llamada 'símbolo', que contendrá el dibujo que aparecerá. Luego, otras tres cajitas: 'tiempoInicio', 'tiempoFin', y 'tiempoReacción', que nos dirán cuánto tiempo tardaste en reaccionar. ¡Con estas cajitas, todo estará bajo control!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 5 (1 minuto): Proyectar la diapositiva 13 "Iniciar el Juego".</div>
+            <div class="dialogue">"Imagina que el botón A es el interruptor que enciende el motor de tu juego. Cuando lo presiones, ¡todo empezará a moverse! Para configurar esto, ve a 'Entrada', arrastra el bloque 'al presionar botón A' y colócalo en el área de trabajo. Este es el interruptor que dará inicio al juego."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 6 (1 minuto): Proyectar la diapositiva 14 "Crear Cuenta Regresiva".</div>
+            <div class="dialogue">"Antes de que el juego te sorprenda con un símbolo, haremos una cuenta regresiva para darte tiempo de prepararte, ¡como cuando los corredores se alinean para una carrera! Usaremos el bloque 'mostrar número' para contar 3, 2, 1, y pondremos una pequeña pausa entre cada número (1000 ms), para que puedas tomar aire antes de reaccionar."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 7 (1 minuto): Proyectar la diapositiva 15 "Generar Símbolo Aleatorio".</div>
+            <div class="dialogue">"Imagina que el microcontrolador es como un sombrero mágico que saca sorpresas. Vamos a pedirle que saque un símbolo al azar: puede ser un corazón o una carita feliz. Para hacerlo, crearemos una 'cajita' llamada 'símbolo' y le diremos que elija aleatoriamente entre 1 y 2. Si saca un 1, será un corazón; si saca un 2, será una carita feliz."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 8 (1 minuto): Proyectar la diapositiva 16 "Registrar Tiempo de Inicio".</div>
+            <div class="dialogue">"Queremos saber exactamente en qué momento aparece el símbolo para medir cuán rápido reaccionas. Piensa en esto como iniciar un cronómetro. Usaremos la cajita 'tiempoInicio' para guardar el momento exacto (en milisegundos) cuando el símbolo aparece. Así sabremos desde cuándo empieza la cuenta regresiva de tu reacción."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 9 (1 minuto): Proyectar la diapositiva 17 "Esperar al Jugador".</div>
+            <div class="dialogue">"Es como si el microcontrolador estuviera en guardia, esperando a ver qué botón presionas. Vamos a ponerlo en un ciclo de espera con el bloque 'repetir mientras'. Este ciclo continuará hasta que presiones A o B, como si estuviera diciendo: 'Estoy esperando, ¡listo para ver tu respuesta!'."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 10 (1 minuto): Proyectar la diapositiva 18 "Registrar Tiempo de Reacción".</div>
+            <div class="dialogue">"¡En cuanto presiones un botón, es como detener el cronómetro! Vamos a registrar el tiempo de fin en la cajita 'tiempoFin'. Luego, restamos el 'tiempoInicio' para calcular cuánto tiempo te tomó reaccionar, ¡como si estuviéramos midiendo quién ganó la carrera!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 11 (4 minutos): Proyectar la diapositiva 19 "Verificar Botón Correcto".</div>
+            <div class="dialogue">"Vamos a agregar un sistema de reglas que controle si lo que hiciste está bien o no, como un juez que decide si ganaste o perdiste el juego. Para eso, arrastra el bloque 'si... entonces... sino' desde 'Lógica' y colócalo debajo del bloque 'establecer 'tiempoReaccion' a'."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 12 (1 minuto): Proyectar la diapositiva 20 "Mostrar Tiempo de Reacción".</div>
+            <div class="dialogue">"¡El momento de la verdad! Mostraremos en la pantalla del microcontrolador cuánto tiempo te tomó reaccionar. Arrastra el bloque 'mostrar número' y usa la cajita 'tiempoReacción'. Es como cuando te dicen cuánto tiempo hiciste en una carrera, ¡y así sabrás qué tan rápido fuiste!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 13 (1 minuto): Proyectar la diapositiva 21 "Probar y Descargar".</div>
+            <div class="dialogue">"¡Es hora de probar lo que hemos construido! Primero, vamos a probar nuestro juego en el simulador de MakeCode. Luego, descarguen el archivo .hex y arrástrenlo a la unidad MICROBIT."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 14 (1 minuto): Proyectar la diapositiva 22 "Prueba en el Micro".</div>
+            <div class="dialogue">"¡Ahora, a la acción real! Conecten su micro:bit, presionen el botón A, y jueguen para ver qué tan rápidos son sus reflejos. ¡Veamos quién es el campeón de la rapidez!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 15 (1 minuto): Proyectar la diapositiva 23 "Resumen y Cierre".</div>
+            <div class="dialogue">"¡Increíble trabajo, equipo! Hoy construimos juntos un juego usando variables, condiciones, bucles, y eventos, como verdaderos programadores. Ahora que tienen las herramientas, pueden personalizar su juego
+<!-- Actividad 4 (5 pasos) -->
+<div id="activity-4" class="activity">
+    <div class="banner" onclick="toggleContent('state-change')">
+        <div class="title">
+            <span>🔄 Actividad 4: State Change (5 pasos)</span>
+            <span>⏰ Tiempo: 5 minutos</span>
+        </div>
+        <div class="subtitle">Realizar ejercicios de activación para mejorar la creatividad y la concentración.</div>
+    </div>
+    <div id="state-change" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (0.5 minutos): Proyectar la diapositiva 24 "State Change".</div>
+            <div class="dialogue">"¡Es hora de movernos un poco, Genios! Vamos a hacer un ejercicio rápido para activar nuestra energía. ¡Pongan atención!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (1.5 minutos): Proyectar la diapositiva 25 "Instrucciones de Activación".</div>
+            <div class="dialogue">"Hoy haremos el ejercicio de Imitación Rápida. Yo mencionaré un animal o un objeto, y ustedes tendrán que imitarlo de inmediato. Por ejemplo, si digo 'perro', ustedes harán una pose como si fueran un perro. Si digo 'árbol', deben imitar cómo se ve un árbol. ¡Vamos a ver cuán rápido pueden cambiar de forma y ser creativos!: ÁRBOL, PERRO, LOMBRIZ, MURCIÉLAGO, GORILA"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (1 minuto): Proyectar la diapositiva 26 "Compartir Creatividad".</div>
+            <div class="dialogue">"¡Muy bien, Genios! Ahora quiero que levanten la mano y me digan cuál fue su pose favorita o la más difícil de imitar. También pueden comentar lo que hicieron sus compañeros."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 4 (1 minuto): Solo diálogo del profesor, sin proyección de diapositiva.</div>
+            <div class="dialogue">"Este ejercicio nos ayuda a activar nuestro cuerpo y nuestra mente, para que podamos concentrarnos mejor en los retos que vienen. Cuando nos movemos, nuestro cerebro recibe más oxígeno, y eso nos permite pensar más claramente y ser más creativos. ¡Ahora estamos listos para continuar!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 5 (1 minuto): Proyectar la diapositiva 27 "Objetivos Alcanzados".</div>
+            <div class="dialogue">"Ahora vamos a revisar los objetivos alcanzados hasta ahora. Hemos logrado activar nuestras mentes y cuerpos, y además hemos trabajado en nuestra creatividad a través del ejercicio de imitación. ¡Gran trabajo, Genios!"</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 5 (4 pasos) -->
+<div id="activity-5" class="activity">
+    <div class="banner" onclick="toggleContent('team-gnius')">
+        <div class="title">
+            <span>👥 Actividad 5: Team Gnius (4 pasos)</span>
+            <span>⏰ Tiempo: 3 minutos</span>
+        </div>
+        <div class="subtitle">Trabajar en equipos para organizar la siguiente misión.</div>
+    </div>
+    <div id="team-gnius" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (0.5 minutos): Proyectar la diapositiva 28 "Team Gnius".</div>
+            <div class="dialogue">"Genios, ahora trabajaremos en parejas. Busquen a su compañero de equipo para esta parte de la misión. ¡Tienen 30 segundos para encontrar su pareja!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (0.5 minutos): Proyectar la diapositiva 29 "Organización de Parejas".</div>
+            <div class="dialogue">"¡Vamos a organizarnos! Tienen 30 segundos para encontrar su compañero de equipo. ¡Adelante!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (1 minuto): Proyectar la diapositiva 30 "Recoger Magic Tablets".</div>
+            <div class="dialogue">"Un integrante de cada pareja pasará al frente para recoger las Magic Tablets. Tienen 1 minuto para hacerlo. ¡Vamos!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 4 (1 minuto): Proyectar la diapositiva 31 "Temporizador 1 Minuto".</div>
+            <div class="dialogue">"Tienen un minuto para recoger el material necesario. ¡El tiempo comienza ahora!"</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 6 (5 pasos) -->
+<div id="activity-6" class="activity">
+    <div class="banner" onclick="toggleContent('challenge')">
+        <div class="title">
+            <span>🏆 Actividad 6: Challenge (5 pasos)</span>
+            <span>⏰ Tiempo: 9 minutos</span>
+        </div>
+        <div class="subtitle">Añadir un tercer botón a través de Paper Programming.</div>
+    </div>
+    <div id="challenge" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (0.5 minutos): Proyectar la diapositiva 32 "Challenge: Añadir Tercer Botón".</div>
+            <div class="dialogue">"¡Genios, ha llegado el momento del reto! Hoy haremos un Paper Programming para mejorar nuestro código. ¿Han notado el logotipo que está en la parte superior del micro? Ese logotipo es un panel táctil que podemos usar como un tercer botón. Su misión será programar este tercer botón en equipo."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (1 minuto): Proyectar la diapositiva 33 "Explicación del Tercer Botón".</div>
+            <div class="dialogue">"El logotipo del micro es un sensor táctil que podemos usar como un tercer botón. Vamos a pensar cómo podríamos añadirlo a nuestro código para que realice una nueva acción cuando lo toquemos. Este será el objetivo de nuestro Paper Programming."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (2 minutos): Proyectar la diapositiva 34 "Paper Programming".</div>
+            <div class="dialogue">"Trabajarán en parejas para dibujar el plan de su código en las Magic Tablets. Su objetivo será añadir el tercer botón al programa para que cuando toquemos el logotipo, ocurra una acción distinta. ¡Piensen en qué nueva acción podría realizar!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 4 (5 minutos): Proyectar la diapositiva 35 "Temporizador de 5 Minutos".</div>
+            <div class="dialogue">"Tienen 5 minutos para diseñar el código y pensar cómo el micro responderá al tocar el logotipo. ¡El tiempo comienza ahora!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 5 (2 minutos): Proyectar la diapositiva 36 "Revisión de Ideas".</div>
+            <div class="dialogue">"¡Tiempo! Ahora quiero que compartan con su compañero lo que crearon. Revisen juntos si las acciones del tercer botón son claras. Luego, vamos a discutir en grupo sus ideas y cómo podríamos mejorarlas."</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 7 (4 pasos) -->
+<div id="activity-7" class="activity">
+    <div class="banner" onclick="toggleContent('easter-egg')">
+        <div class="title">
+            <span>🥚 Actividad 7: Easter Egg (4 pasos)</span>
+            <span>⏰ Tiempo: 3 minutos</span>
+        </div>
+        <div class="subtitle">Pregunta sorpresa para ganar Mon-e.</div>
+    </div>
+    <div id="easter-egg" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (0.5 minutos): Proyectar la diapositiva 37 "Pregunta Easter Egg".</div>
+            <div class="dialogue">"¡Es hora del Easter Egg! Vamos a ver quién ha estado prestando atención. ¡Recuerden que quien conteste primero correctamente ganará Mon-e! Levanten la mano si saben la respuesta."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (0.5 minutos): Proyectar la diapositiva 38 "¿Qué son las variables?".</div>
+            <div class="dialogue">"Aquí va la pregunta: ¿Qué son las variables? Levanten la mano si saben la respuesta. Recuerden, solo los tres primeros en levantar la mano tendrán la oportunidad de responder."</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (1 minuto): No proyectar diapositiva, solo diálogo del profesor.</div>
+            <div class="dialogue">"Voy a elegir a tres estudiantes que levantaron la mano. Vengan uno por uno y díganme la respuesta en voz baja para que los demás no escuchen. ¡Vamos!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 4 (1 minuto): Proyectar la diapositiva 39 "Respuesta Correcta".</div>
+            <div class="dialogue">"¡Muy bien! La respuesta correcta es: Las variables son espacios en la memoria donde podemos guardar información que cambia mientras el programa está en ejecución. ¡Felicidades a nuestros ganadores!"</div>
+        </div>
+    </div>
+</div>
+<!-- Actividad 8 (3 pasos) -->
+<div id="activity-8" class="activity">
+    <div class="banner" onclick="toggleContent('honor-dojo')">
+        <div class="title">
+            <span>🎖️ Actividad 8: Honor de Dojo (3 pasos)</span>
+            <span>⏰ Tiempo: 3.5 minutos</span>
+        </div>
+        <div class="subtitle">Revisión de los objetivos alcanzados y cierre de la clase.</div>
+    </div>
+    <div id="honor-dojo" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (0.5 minutos): Proyectar la diapositiva 40 "Revisión de Objetivos".</div>
+            <div class="dialogue">"Genios, ¡hemos completado otra misión con éxito! Vamos a revisar los objetivos que hemos alcanzado hoy. ¡Presten atención!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (1.5 minutos): No proyectar diapositiva.</div>
+            <div class="dialogue">"Quiero felicitar a todos por su esfuerzo, creatividad y trabajo en equipo. Hoy logramos programar un juego increíble y aprender mucho sobre variables. ¡Cada vez son más expertos en microcontroladores! ¡Bravo, Genios!"</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (1.5 minutos): Proyectar la diapositiva 41 "Ordenar el Espacio".</div>
+            <div class="dialogue">"Antes de despedirnos, vamos a honrar nuestro espacio de trabajo. Recuerden, ser un Genio también significa cuidar nuestro entorno. Por favor, asegúrense de que todo esté en orden antes de terminar."</div>
+        </div>
+    </div>
+</div>
+</div> <!-- Cierre del container -->
+
+    <!-- Scripts adicionales si es necesario -->
+    <script>
+        // Agregar scripts adicionales aquí si es necesario
+    </script>
+
+    </body>
+    </html>
